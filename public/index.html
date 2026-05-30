@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SS Climbing — Book Your Session</title>
+  <meta name="description" content="Booking online untuk sesi climbing di SS Climbing. Pilih jadwal, isi data, bayar. Simpel dan cepat.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HERO / HEADER ===== -->
+  <header id="app-header">
+    <div class="header-inner">
+      <a href="#" class="logo" id="logo">
+        <span class="logo-icon">⛰️</span>
+        <span class="logo-text">SS <span class="logo-accent">Climbing</span></span>
+      </a>
+      <nav class="header-nav">
+        <a href="#" class="nav-link active">Book</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Contact</a>
+      </nav>
+      <!-- Hamburger Menu untuk Mobile -->
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Buka Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== MAIN APP ===== -->
+  <main id="app-main">
+
+    <!-- Progress Stepper -->
+    <div class="stepper" id="stepper">
+      <div class="step-item active" data-step="1">
+        <div class="step-circle">1</div>
+        <span class="step-label">Pilih Jadwal</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="2">
+        <div class="step-circle">2</div>
+        <span class="step-label">Pilih Sesi</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="3">
+        <div class="step-circle">3</div>
+        <span class="step-label">Data & Add-on</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="4">
+        <div class="step-circle">4</div>
+        <span class="step-label">Bayar</span>
+      </div>
+    </div>
+    <!-- ===== STEP 1 : BOOKING TYPE & CALENDAR ===== -->
+    <section class="step-panel active" id="step-1">
+      <div class="panel-header">
+        <h1>Mulai Petualangan Climbing Kamu</h1>
+        <p class="subtitle">Pilih tiket sekali datang atau paket multipass/membership yang lebih hemat.</p>
+      </div>
+
+      <!-- Mode Selector Tabs -->
+      <div class="booking-mode-tabs">
+        <button class="mode-tab active" id="tab-single" data-mode="single">
+          <span class="tab-emoji">🧗</span>
+          <div class="tab-text">
+            <span class="tab-title">Sekali Datang</span>
+            <span class="tab-subtitle">Single Entry Pass</span>
+          </div>
+        </button>
+        <button class="mode-tab" id="tab-package" data-mode="package">
+          <span class="tab-emoji">💎</span>
+          <div class="tab-text">
+            <span class="tab-title">Paket Hemat / Member</span>
+            <span class="tab-subtitle">Multipass & Unlimited</span>
+          </div>
+        </button>
+        <button class="mode-tab" id="tab-claim" data-mode="claim">
+          <span class="tab-emoji">🎟️</span>
+          <div class="tab-text">
+            <span class="tab-title">Gunakan Paket / Member</span>
+            <span class="tab-subtitle">Booking tanpa bayar lagi</span>
+          </div>
+        </button>
+        <button class="mode-tab" id="tab-check-ticket" data-mode="check-ticket">
+          <span class="tab-emoji">🔍</span>
+          <div class="tab-text">
+            <span class="tab-title">Cari Tiket Saya</span>
+            <span class="tab-subtitle">Cek tiket & barcode kamu</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Wrapper 1: Single Pass (Calendar) -->
+      <div class="mode-content-wrapper" id="single-pass-wrapper">
+        <div class="calendar-wrapper">
+          <div class="calendar-nav">
+            <button class="cal-arrow" id="cal-prev" aria-label="Bulan sebelumnya">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <h2 class="cal-title" id="cal-title"></h2>
+            <button class="cal-arrow" id="cal-next" aria-label="Bulan berikutnya">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <div class="calendar-grid" id="cal-grid">
+            <!-- Day headers and day cells rendered by JS -->
+          </div>
+
+          <div class="calendar-legend">
+            <div class="legend-item"><span class="legend-dot available"></span> Tersedia</div>
+            <div class="legend-item"><span class="legend-dot closed"></span> Tutup</div>
+            <div class="legend-item"><span class="legend-dot full"></span> Penuh</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wrapper 2: Packages & Membership -->
+      <div class="mode-content-wrapper hidden" id="packages-wrapper">
+        <!-- Weekday section -->
+        <h3 class="package-section-title">📆 Weekday Passes <span class="sec-subtitle">Khusus Senin, Rabu, Jumat</span></h3>
+        <div class="packages-grid">
+          <!-- Weekday 5x -->
+          <div class="package-card" data-package-id="pass-wd-5">
+            <div class="pack-badge">Hemat 5%</div>
+            <div class="pack-header">
+              <div class="pack-name">5x Weekday Pass</div>
+              <div class="pack-sub">Masa berlaku 3 bulan</div>
+            </div>
+            <div class="pack-price-box">
+              <span class="pack-price">Rp 329.000</span>
+              <span class="pack-unit">/ paket</span>
+            </div>
+            <div class="pack-comparison">Setara Rp 65.800 per datang</div>
+            <ul class="pack-features">
+              <li>🧗 5 Tiket masuk weekday</li>
+              <li>🛡️ Berlaku Sen, Rab, Jum</li>
+              <li>⚡ Bebas pilih sesi operasional</li>
+            </ul>
+          </div>
+
+          <!-- Weekday 10x -->
+          <div class="package-card" data-package-id="pass-wd-10">
+            <div class="pack-badge best">Hemat 13%</div>
+            <div class="pack-header">
+              <div class="pack-name">10x Weekday Pass</div>
+              <div class="pack-sub">Masa berlaku 6 bulan</div>
+            </div>
+            <div class="pack-price-box">
+              <span class="pack-price">Rp 599.000</span>
+              <span class="pack-unit">/ paket</span>
+            </div>
+            <div class="pack-comparison">Setara Rp 59.900 per datang</div>
+            <ul class="pack-features">
+              <li>🧗 10 Tiket masuk weekday</li>
+              <li>🛡️ Berlaku Sen, Rab, Jum</li>
+              <li>⚡ Bebas pilih sesi operasional</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Weekend section -->
+        <h3 class="package-section-title">🎉 Weekend & Holiday Passes <span class="sec-subtitle">Bisa Weekday + Sabtu / Libur Nasional</span></h3>
+        <div class="packages-grid">
+          <!-- Weekend 5x -->
+          <div class="package-card" data-package-id="pass-we-5">
+            <div class="pack-badge">Hemat 7%</div>
+            <div class="pack-header">
+              <div class="pack-name">5x All-Day Pass</div>
+              <div class="pack-sub">Masa berlaku 3 bulan</div>
+            </div>
+            <div class="pack-price-box">
+              <span class="pack-price">Rp 599.000</span>
+              <span class="pack-unit">/ paket</span>
+            </div>
+            <div class="pack-comparison">Setara Rp 119.800 per datang</div>
+            <ul class="pack-features">
+              <li>🧗 5 Tiket masuk bebas hari</li>
+              <li>🌟 Berlaku Weekdays & Weekend</li>
+              <li>⚡ Bebas pilih sesi operasional</li>
+            </ul>
+          </div>
+
+          <!-- Weekend 10x -->
+          <div class="package-card" data-package-id="pass-we-10">
+            <div class="pack-badge best">Hemat 15%</div>
+            <div class="pack-header">
+              <div class="pack-name">10x All-Day Pass</div>
+              <div class="pack-sub">Masa berlaku 6 bulan</div>
+            </div>
+            <div class="pack-price-box">
+              <span class="pack-price">Rp 1.090.000</span>
+              <span class="pack-unit">/ paket</span>
+            </div>
+            <div class="pack-comparison">Setara Rp 109.000 per datang</div>
+            <ul class="pack-features">
+              <li>🧗 10 Tiket masuk bebas hari</li>
+              <li>🌟 Berlaku Weekdays & Weekend</li>
+              <li>⚡ Bebas pilih sesi operasional</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Membership section -->
+        <h3 class="package-section-title">👑 Unlimited Membership <span class="sec-subtitle">Climbing Sepuasnya Tanpa Batas</span></h3>
+        <div class="packages-grid single-col">
+          <!-- Month Member -->
+          <div class="package-card special" data-package-id="member-1m">
+            <div class="pack-badge special">🔥 Paling Populer</div>
+            <div class="pack-main-row">
+              <div class="pack-header">
+                <div class="pack-name">1 Month Unlimited Pass</div>
+                <div class="pack-sub">Datang sepuasnya kapan saja selama 30 hari</div>
+              </div>
+              <div class="pack-price-box-right">
+                <div class="pack-price-box">
+                  <span class="pack-price">Rp 419.000</span>
+                  <span class="pack-unit">/ bulan</span>
+                </div>
+                <div class="pack-comparison">Cocok jika datang > 4x sebulan</div>
+              </div>
+            </div>
+            <ul class="pack-features col-2">
+              <li>⚡ Kuota unlimited datang setiap hari</li>
+              <li>🌟 Berlaku weekday & weekend</li>
+              <li>🎁 Diskon sewa alat 10%</li>
+              <li>🔒 Akses locker & lounge premium</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Package Flow Selection Dialog -->
+        <div class="package-flow-bar hidden" id="package-flow-bar">
+          <div class="flow-info">
+            <span class="flow-label">Paket Dipilih:</span>
+            <span class="flow-name" id="selected-pack-name">—</span>
+          </div>
+          <div class="flow-actions">
+            <button class="btn btn-ghost btn-sm" id="btn-pack-buy-only">
+              Beli Paket Saja
+            </button>
+            <button class="btn btn-primary btn-sm" id="btn-pack-and-book">
+              Beli & Booking Sesi 1
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3L9 7L5 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wrapper 3: Claim Session using WhatsApp -->
+      <div class="mode-content-wrapper hidden" id="claim-session-wrapper">
+        <div class="form-card" style="max-width: 500px; margin: 0 auto; margin-bottom: var(--space-xl);">
+          <h3 class="form-card-title">
+            <span class="form-icon">🔍</span>
+            Cek Keanggotaan / Paket Kamu
+          </h3>
+          <p class="addon-desc" style="margin-bottom: var(--space-md);">Cukup masukkan nomor WhatsApp yang terdaftar untuk melihat paket aktif Anda.</p>
+          
+          <div class="form-group" style="margin-bottom: var(--space-md);">
+            <label for="claim-whatsapp">Nomor WhatsApp Terdaftar</label>
+            <div class="phone-input-wrapper">
+              <span class="phone-prefix">+62</span>
+              <input type="tel" id="claim-whatsapp" placeholder="812xxxxxxxx">
+            </div>
+          </div>
+          
+          <button class="btn btn-primary" id="btn-check-claim" style="width: 100%;">
+            Cek Sisa Paket & Booking Sesi
+          </button>
+          
+          <!-- Loading Indicator -->
+          <div id="claim-loading" class="hidden" style="text-align: center; padding: var(--space-md);">
+            <div class="sessions-loading" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <div class="loading-dot"></div>
+              <div class="loading-dot"></div>
+              <div class="loading-dot"></div>
+              <span>Mencari paket...</span>
+            </div>
+          </div>
+          
+          <!-- Display Active Package details -->
+          <div id="claim-result-box" class="claim-result-box hidden" style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-md);">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Wrapper 4: Check Active Bookings/Tickets using WhatsApp -->
+      <div class="mode-content-wrapper hidden" id="check-ticket-wrapper">
+        <div class="form-card" style="max-width: 500px; margin: 0 auto; margin-bottom: var(--space-xl);">
+          <h3 class="form-card-title">
+            <span class="form-icon">🔍</span>
+            Cari Tiket / Booking Sesi Kamu
+          </h3>
+          <p class="addon-desc" style="margin-bottom: var(--space-md);">Masukkan nomor WhatsApp Anda untuk mencari tiket aktif dan menampilkan barcode masuk.</p>
+          
+          <div class="form-group" style="margin-bottom: var(--space-md);">
+            <label for="check-ticket-whatsapp">Nomor WhatsApp Terdaftar</label>
+            <div class="phone-input-wrapper">
+              <span class="phone-prefix">+62</span>
+              <input type="tel" id="check-ticket-whatsapp" placeholder="812xxxxxxxx">
+            </div>
+          </div>
+          
+          <button class="btn btn-primary" id="btn-search-ticket" style="width: 100%;">
+            Cari Tiket Saya
+          </button>
+          
+          <!-- Loading Indicator -->
+          <div id="search-ticket-loading" class="hidden" style="text-align: center; padding: var(--space-md);">
+            <div class="sessions-loading" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <div class="loading-dot"></div>
+              <div class="loading-dot"></div>
+              <div class="loading-dot"></div>
+              <span>Mencari tiket booking...</span>
+            </div>
+          </div>
+          
+          <!-- Display Active Bookings/Tickets -->
+          <div id="check-ticket-result-box" class="claim-result-box hidden" style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: var(--radius-md);">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Schedule Info Card -->
+      <div class="info-card">
+        <h3>📅 Jadwal Operasional</h3>
+        <div class="schedule-grid">
+          <div class="schedule-row">
+            <span class="schedule-days">Senin, Rabu, Jumat</span>
+            <span class="schedule-time">18:00 – 21:00</span>
+            <span class="schedule-price weekday">Rp 69.000</span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-days">Sabtu</span>
+            <span class="schedule-time">09:00 – 12:00 & 12:00 – 15:00</span>
+            <span class="schedule-price weekend">Rp 129.000</span>
+          </div>
+          <div class="schedule-row closed-row">
+            <span class="schedule-days">Selasa, Kamis, Minggu</span>
+            <span class="schedule-time">Tutup</span>
+            <span class="schedule-price">—</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STEP 2 : SESSION ===== -->
+    <section class="step-panel" id="step-2">
+      <div class="panel-header">
+        <h1>Pilih Sesi</h1>
+        <p class="subtitle" id="session-date-label">Sesi tersedia untuk tanggal yang dipilih</p>
+        
+        <!-- Safety Limitation Banner -->
+        <div class="safety-banner">
+          <span class="safety-icon">⚠️</span>
+          <div class="safety-text">
+            <strong>Wall Size Limit:</strong> Kuota dibatasi maksimal <strong>5-6 orang per sesi</strong> demi keamanan, keselamatan, dan kenyamanan Anda memanjat.
+          </div>
+        </div>
+      </div>
+
+      <div class="sessions-container" id="sessions-container">
+        <!-- Sessions will be dynamically generated -->
+      </div>
+
+      <div class="step-actions">
+        <button class="btn btn-ghost" id="back-to-calendar">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Kembali
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== STEP 3 : FORM + ADD-ONS ===== -->
+    <section class="step-panel" id="step-3">
+      <div class="panel-header">
+        <h1>Data Diri & Tambahan</h1>
+        <p class="subtitle">Isi data singkat kamu dan pilih perlengkapan tambahan jika perlu.</p>
+      </div>
+
+      <div class="form-layout">
+        <!-- User Form -->
+        <div class="form-card">
+          <h3 class="form-card-title">
+            <span class="form-icon">👤</span>
+            Informasi Pemesan
+          </h3>
+          <div class="form-group">
+            <label for="input-name">Nama Lengkap</label>
+            <input type="text" id="input-name" placeholder="Masukkan nama lengkap" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="input-email">Email</label>
+            <input type="email" id="input-email" placeholder="contoh@email.com" autocomplete="email" required>
+          </div>
+          <div class="form-group">
+            <label for="input-whatsapp">Nomor WhatsApp</label>
+            <div class="phone-input-wrapper">
+              <span class="phone-prefix">+62</span>
+              <input type="tel" id="input-whatsapp" placeholder="812xxxxxxxx" autocomplete="tel">
+            </div>
+          </div>
+        </div>
+
+        <!-- Add-ons -->
+        <div class="form-card">
+          <h3 class="form-card-title">
+            <span class="form-icon">🎒</span>
+            Sewa Alat <span class="optional-badge">Opsional</span>
+          </h3>
+          <p class="addon-desc">Belum punya alat sendiri? Sewa aja, praktis!</p>
+
+          <label class="addon-item" for="addon-shoes" id="addon-shoes-label">
+            <div class="addon-left">
+              <input type="checkbox" id="addon-shoes" value="25000">
+              <div class="addon-checkbox-visual">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7L6 10L11 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="addon-info">
+                <span class="addon-name">🥾 Sepatu Climbing</span>
+                <span class="addon-detail">Tersedia ukuran 36 – 45</span>
+              </div>
+            </div>
+            <span class="addon-price">+Rp 25.000</span>
+          </label>
+
+          <label class="addon-item" for="addon-chalk" id="addon-chalk-label">
+            <div class="addon-left">
+              <input type="checkbox" id="addon-chalk" value="15000">
+              <div class="addon-checkbox-visual">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7L6 10L11 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="addon-info">
+                <span class="addon-name">🧗 Chalk Bag</span>
+                <span class="addon-detail">Chalk bag + chalk ball</span>
+              </div>
+            </div>
+            <span class="addon-price">+Rp 15.000</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Booking Summary (Sticky) -->
+      <div class="booking-summary-bar" id="booking-summary-bar">
+        <div class="summary-left">
+          <div class="summary-session-info">
+            <span class="summary-date" id="summary-date">—</span>
+            <span class="summary-time" id="summary-time">—</span>
+          </div>
+          <div class="summary-total">
+            <span class="total-label">Total:</span>
+            <span class="total-amount" id="summary-total">Rp 0</span>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="btn-to-payment">
+          Lanjut Bayar
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <div class="step-actions">
+        <button class="btn btn-ghost" id="back-to-sessions">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Kembali
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== STEP 4 : PAYMENT ===== -->
+    <section class="step-panel" id="step-4">
+      <div class="panel-header">
+        <h1>Pembayaran</h1>
+        <p class="subtitle">Periksa detail booking dan lakukan pembayaran.</p>
+      </div>
+
+      <div class="payment-layout">
+        <!-- Order Review -->
+        <div class="payment-card order-review">
+          <h3 class="payment-card-title">📋 Ringkasan Booking</h3>
+
+          <div class="review-row">
+            <span class="review-label">Nama</span>
+            <span class="review-value" id="review-name">—</span>
+          </div>
+          <div class="review-row">
+            <span class="review-label">Email</span>
+            <span class="review-value" id="review-email">—</span>
+          </div>
+          <div class="review-row">
+            <span class="review-label">WhatsApp</span>
+            <span class="review-value" id="review-wa">—</span>
+          </div>
+
+          <div class="review-divider"></div>
+
+          <div class="review-row">
+            <span class="review-label">Tanggal</span>
+            <span class="review-value" id="review-date">—</span>
+          </div>
+          <div class="review-row">
+            <span class="review-label">Sesi</span>
+            <span class="review-value" id="review-session">—</span>
+          </div>
+
+          <div class="review-divider"></div>
+
+          <div class="review-row">
+            <span class="review-label" id="review-ticket-price-label">Tiket Masuk</span>
+            <span class="review-value" id="review-ticket-price">—</span>
+          </div>
+          <div class="review-row addon-review-row" id="review-shoes-row" style="display:none;">
+            <span class="review-label">Sewa Sepatu</span>
+            <span class="review-value">Rp 25.000</span>
+          </div>
+          <div class="review-row addon-review-row" id="review-chalk-row" style="display:none;">
+            <span class="review-label">Sewa Chalk Bag</span>
+            <span class="review-value">Rp 15.000</span>
+          </div>
+
+          <div class="review-divider thick"></div>
+
+          <div class="review-row total-row">
+            <span class="review-label">Total Pembayaran</span>
+            <span class="review-value total-value" id="review-total">—</span>
+          </div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="payment-card payment-methods">
+          <h3 class="payment-card-title">💳 Metode Pembayaran</h3>
+
+          <div class="payment-options">
+            <label class="payment-option" for="pay-qris" id="pay-qris-label">
+              <input type="radio" name="payment" id="pay-qris" value="qris" checked>
+              <div class="payment-option-inner">
+                <div class="payment-radio-visual"></div>
+                <div class="payment-method-info">
+                  <span class="payment-method-name">QRIS</span>
+                  <span class="payment-method-desc">Scan & bayar dari semua e-wallet</span>
+                </div>
+                <span class="payment-method-icon">📱</span>
+              </div>
+            </label>
+
+            <label class="payment-option" for="pay-gopay" id="pay-gopay-label">
+              <input type="radio" name="payment" id="pay-gopay" value="gopay">
+              <div class="payment-option-inner">
+                <div class="payment-radio-visual"></div>
+                <div class="payment-method-info">
+                  <span class="payment-method-name">GoPay</span>
+                  <span class="payment-method-desc">Bayar langsung via GoPay</span>
+                </div>
+                <span class="payment-method-icon">💚</span>
+              </div>
+            </label>
+
+            <label class="payment-option" for="pay-ovo" id="pay-ovo-label">
+              <input type="radio" name="payment" id="pay-ovo" value="ovo">
+              <div class="payment-option-inner">
+                <div class="payment-radio-visual"></div>
+                <div class="payment-method-info">
+                  <span class="payment-method-name">OVO</span>
+                  <span class="payment-method-desc">Bayar langsung via OVO</span>
+                </div>
+                <span class="payment-method-icon">💜</span>
+              </div>
+            </label>
+
+            <label class="payment-option" for="pay-bank" id="pay-bank-label">
+              <input type="radio" name="payment" id="pay-bank" value="bank">
+              <div class="payment-option-inner">
+                <div class="payment-radio-visual"></div>
+                <div class="payment-method-info">
+                  <span class="payment-method-name">Transfer Bank</span>
+                  <span class="payment-method-desc">BCA, BNI, Mandiri, BRI</span>
+                </div>
+                <span class="payment-method-icon">🏦</span>
+              </div>
+            </label>
+          </div>
+
+          <!-- Detail Pembayaran Dinamis -->
+          <div id="payment-details-container" class="payment-details-container" style="display: none;">
+            <!-- Content dynamically rendered by JS -->
+          </div>
+
+          <button class="btn btn-primary btn-pay" id="btn-pay">
+            <span class="btn-pay-text">Bayar Sekarang</span>
+            <span class="btn-pay-amount" id="btn-pay-amount">Rp 0</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="step-actions">
+        <button class="btn btn-ghost" id="back-to-form">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Kembali
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== STEP 5 : SUCCESS ===== -->
+    <section class="step-panel" id="step-5">
+      <div class="success-container">
+        <div class="success-animation" id="success-animation">
+          <div class="success-circle">
+            <svg class="success-check" width="60" height="60" viewBox="0 0 60 60" fill="none">
+              <path class="check-path" d="M16 30L26 40L44 20" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="success-rings">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+          </div>
+        </div>
+
+        <h1 class="success-title">Booking Berhasil! 🎉</h1>
+        <p class="success-subtitle">Terima kasih! Detail booking sudah dikirim ke email dan WhatsApp kamu.</p>
+
+        <div class="success-ticket">
+          <div class="ticket-header">
+            <span class="ticket-brand">SS Climbing</span>
+            <span class="ticket-id" id="ticket-id">SS-000000</span>
+          </div>
+          <div class="ticket-body">
+            <div class="ticket-row">
+              <div class="ticket-field">
+                <span class="ticket-label">Nama</span>
+                <span class="ticket-value" id="ticket-name">—</span>
+              </div>
+              <div class="ticket-field">
+                <span class="ticket-label" id="ticket-date-label">Tanggal</span>
+                <span class="ticket-value" id="ticket-date">—</span>
+              </div>
+            </div>
+            <div class="ticket-row">
+              <div class="ticket-field">
+                <span class="ticket-label" id="ticket-session-label">Sesi</span>
+                <span class="ticket-value" id="ticket-session">—</span>
+              </div>
+              <div class="ticket-field">
+                <span class="ticket-label">Total</span>
+                <span class="ticket-value ticket-total" id="ticket-total">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-footer">
+            <div class="ticket-barcode">
+              <div class="barcode-lines"></div>
+            </div>
+            <span class="ticket-note">Tunjukkan tiket ini saat datang</span>
+          </div>
+        </div>
+
+        <div class="success-actions-stacked">
+          <button class="btn btn-primary btn-wa-send" id="btn-send-wa-receipt">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            Kirim Bukti & Konfirmasi via WA
+          </button>
+          
+          <div class="success-actions">
+            <button class="btn btn-ghost" id="btn-new-booking">Booking Lagi</button>
+            <button class="btn btn-ghost" id="btn-share">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8V12.667C4 13.0203 4.14048 13.3594 4.39052 13.6095C4.64057 13.8595 4.97971 14 5.33333 14H10.6667C11.0203 14 11.3594 13.8595 11.6095 13.6095C11.8595 13.3594 12 13.0203 12 12.667V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.33333 4.66667L8 3.33333L6.66667 4.66667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3.33333V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Bagikan Tiket
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT PANEL ===== -->
+    <section class="step-panel" id="about-panel">
+      <div class="panel-header">
+        <h1>Welcome to Ssshophaus Boulder</h1>
+        <p class="subtitle">Setrasari Plaza, Bandung, Indonesia</p>
+      </div>
+
+      <div class="about-layout">
+        <!-- Story Card -->
+        <div class="about-card story-card">
+          <div class="card-glow"></div>
+          <h3 class="about-card-title">📖 Our Story</h3>
+          <div class="story-content">
+            <p>Hi! Welcome to Ssshophaus Boulder. Let us introduce ourselves before your visit.</p>
+            <p>We are located at <strong>Setrasari Plaza, Bandung, Indonesia</strong>. The space is on the third floor of an open-plan shophouse unit.</p>
+            <p>This place started as my personal training space to build endurance, so I decided to build a training wall. The wall consists of only four plywood panels, making it <strong>2.4 meters high and 4.8 meters wide</strong>, with various types of handholds and small footholds.</p>
+            <p>Long story short, I decided to create an Instagram account for this space. The intention was simply to let anyone come train and hang out. Over time, this place has become a little melting pot — from old friends I hadn't seen in a while, to friends of friends, and even complete strangers.</p>
+            <p>Hopefully this short introduction gives you a better picture of the space. See you soon!</p>
+          </div>
+        </div>
+
+        <!-- Facilities Card -->
+        <div class="about-card facilities-card">
+          <h3 class="about-card-title">✨ Facilities</h3>
+          <p class="fac-intro-text">Fasilitas lengkap yang disediakan untuk kenyamanan sesi memanjat Anda:</p>
+          
+          <div class="facilities-grid">
+            <div class="fac-item">
+              <span class="fac-icon">⏱️</span>
+              <div class="fac-details">
+                <span class="fac-name">Guided Session</span>
+                <span class="fac-sub">3 jam (Weekday/Weekend)</span>
+              </div>
+            </div>
+            
+            <div class="fac-item">
+              <span class="fac-icon">☕</span>
+              <div class="fac-details">
+                <span class="fac-name">Filter Coffee</span>
+                <span class="fac-sub">Free 225 ml (Weekend)</span>
+              </div>
+            </div>
+
+            <div class="fac-item">
+              <span class="fac-icon">🍪</span>
+              <div class="fac-details">
+                <span class="fac-name">Free Snacks</span>
+                <span class="fac-sub">Camilan gratis tersedia</span>
+              </div>
+            </div>
+
+            <div class="fac-item">
+              <span class="fac-icon">💧</span>
+              <div class="fac-details">
+                <span class="fac-name">Mineral Water</span>
+                <span class="fac-sub">Disediakan gratis</span>
+              </div>
+            </div>
+
+            <div class="fac-item">
+              <span class="fac-icon">🍽️</span>
+              <div class="fac-details">
+                <span class="fac-name">Self Service Pantry</span>
+                <span class="fac-sub">Pantry untuk umum</span>
+              </div>
+            </div>
+
+            <div class="fac-item">
+              <span class="fac-icon">🚪</span>
+              <div class="fac-details">
+                <span class="fac-name">Changing Room</span>
+                <span class="fac-sub">Ruang ganti bersih</span>
+              </div>
+            </div>
+
+            <div class="fac-item">
+              <span class="fac-icon">🕌</span>
+              <div class="fac-details">
+                <span class="fac-name">Mushola</span>
+                <span class="fac-sub">Area ibadah tenang</span>
+              </div>
+            </div>
+
+            <div class="fac-item">
+              <span class="fac-icon">🚽</span>
+              <div class="fac-details">
+                <span class="fac-name">Toilet & Shower</span>
+                <span class="fac-sub">Air dingin segar</span>
+              </div>
+            </div>
+
+            <div class="fac-item">
+              <span class="fac-icon">🔒</span>
+              <div class="fac-details">
+                <span class="fac-name">Locker Area</span>
+                <span class="fac-sub">Bantu kami menjaga kerapian</span>
+              </div>
+            </div>
+
+            <div class="fac-item">
+              <span class="fac-icon">💻</span>
+              <div class="fac-details">
+                <span class="fac-name">Working Space</span>
+                <span class="fac-sub">Area kerja nyaman</span>
+              </div>
+            </div>
+
+            <div class="fac-item">
+              <span class="fac-icon">🅿️</span>
+              <div class="fac-details">
+                <span class="fac-name">Parking Area</span>
+                <span class="fac-sub">Lahan parkir luas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About CTA -->
+      <div class="about-cta-box">
+        <button class="btn btn-primary" id="btn-about-to-book">
+          🧗 Mulai Booking Sesi Sekarang
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 3L11 9L5 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT PANEL ===== -->
+    <section class="step-panel" id="contact-panel">
+      <div class="panel-header">
+        <h1>Hubungi Kami</h1>
+        <p class="subtitle">Tanya seputar sesi, kolaborasi, atau cari lokasi kami di Bandung.</p>
+      </div>
+
+      <div class="contact-layout">
+        <!-- Contact Options Grid -->
+        <div class="contact-options-grid">
+          <!-- WhatsApp Card -->
+          <a href="https://wa.me/6282120985291?text=Hi%20Ssshophaus%20Boulder!%20Mau%20tanya-tanya%20seputar%20climbing%20session..." target="_blank" class="contact-card-link wa-card">
+            <div class="contact-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </div>
+            <div class="contact-card-details">
+              <span class="contact-type">WhatsApp Chat</span>
+              <span class="contact-value">+62 821-2098-5291</span>
+              <span class="contact-action">Hubungi via WA &rarr;</span>
+            </div>
+          </a>
+
+          <!-- Instagram Card -->
+          <a href="https://www.instagram.com/ssshophaus_boulder/" target="_blank" class="contact-card-link ig-card">
+            <div class="contact-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div class="contact-card-details">
+              <span class="contact-type">Instagram Profile</span>
+              <span class="contact-value">@ssshophaus_boulder</span>
+              <span class="contact-action">Follow & DM &rarr;</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Maps & Location Card -->
+        <div class="contact-location-card">
+          <div class="location-header">
+            <span class="loc-pin">📍</span>
+            <div class="loc-text">
+              <h3 class="loc-title">Ssshophaus Boulder</h3>
+              <p class="loc-address">Setrasari Plaza, Lt. 3, Sukagalih, Kec. Sukajadi, Kota Bandung, Jawa Barat 40164</p>
+            </div>
+          </div>
+
+          <!-- Elegant Map Placeholder Map Card -->
+          <div class="map-placeholder">
+            <div class="map-grid-lines"></div>
+            <div class="map-radar-circle">
+              <div class="radar-dot"></div>
+              <div class="radar-glow"></div>
+            </div>
+            <a href="https://maps.app.goo.gl/qLpyFhTggMwADgNp9" target="_blank" class="btn btn-primary btn-sm btn-map-cta">
+              🗺️ Buka di Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact CTA -->
+      <div class="about-cta-box">
+        <button class="btn btn-primary" id="btn-contact-to-book">
+          🧗 Mulai Booking Sesi Sekarang
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 3L11 9L5 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Processing Modal Overlay -->
+  <div class="modal-overlay" id="processing-modal">
+    <div class="modal-content">
+      <div class="processing-spinner">
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+      </div>
+      <h3>Memproses Pembayaran...</h3>
+      <p>Mohon tunggu sebentar</p>
+    </div>
+  </div>
+
+  <footer id="app-footer">
+    <p>© 2026 SS Climbing. All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
