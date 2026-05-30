@@ -1115,8 +1115,8 @@
         alertBanner = document.createElement('div');
         alertBanner.id = 'pack-booking-alert';
         alertBanner.style.cssText = `
-          background: rgba(249, 115, 22, 0.1);
-          border: 1px solid rgba(249, 115, 22, 0.25);
+          background: rgba(204, 65, 37, 0.1);
+          border: 1px solid rgba(204, 65, 37, 0.25);
           color: var(--accent-primary);
           padding: 12px 16px;
           border-radius: var(--radius-md);
@@ -1128,7 +1128,7 @@
         alertBanner.innerHTML = `
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; width:100%;">
             <span style="text-align:left;">🌟 <strong>Booking Sesi Pertama:</strong> Pilih tanggal climbing kamu pada kalender di bawah.</span>
-            <button id="btn-cancel-pack-booking" class="btn btn-sm btn-ghost" style="padding:4px 8px; font-size:0.75rem; color:var(--accent-primary); border:1px solid rgba(249, 115, 22, 0.2); background:transparent; cursor:pointer;">
+            <button id="btn-cancel-pack-booking" class="btn btn-sm btn-ghost" style="padding:4px 8px; font-size:0.75rem; color:var(--accent-primary); border:1px solid rgba(204, 65, 37, 0.2); background:transparent; cursor:pointer;">
               ← Kembali ke Paket
             </button>
           </div>
@@ -1143,7 +1143,7 @@
         alertBanner.innerHTML = `
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; width:100%;">
             <span style="text-align:left;">🌟 <strong>Booking Sesi Pertama:</strong> Pilih tanggal climbing kamu pada kalender di bawah.</span>
-            <button id="btn-cancel-pack-booking" class="btn btn-sm btn-ghost" style="padding:4px 8px; font-size:0.75rem; color:var(--accent-primary); border:1px solid rgba(249, 115, 22, 0.2); background:transparent; cursor:pointer;">
+            <button id="btn-cancel-pack-booking" class="btn btn-sm btn-ghost" style="padding:4px 8px; font-size:0.75rem; color:var(--accent-primary); border:1px solid rgba(204, 65, 37, 0.2); background:transparent; cursor:pointer;">
               ← Kembali ke Paket
             </button>
           </div>
@@ -1341,8 +1341,8 @@
                   alertBanner = document.createElement('div');
                   alertBanner.id = 'pack-booking-alert';
                   alertBanner.style.cssText = `
-                    background: rgba(249, 115, 22, 0.1);
-                    border: 1px solid rgba(249, 115, 22, 0.25);
+                    background: rgba(204, 65, 37, 0.1);
+                    border: 1px solid rgba(204, 65, 37, 0.25);
                     color: var(--accent-primary);
                     padding: 12px 16px;
                     border-radius: var(--radius-md);
@@ -1354,7 +1354,7 @@
                   alertBanner.innerHTML = `
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; width:100%;">
                       <span style="text-align:left;">👑 <strong>Klaim Sesi Member:</strong> Pilih tanggal climbing kamu pada kalender di bawah.</span>
-                      <button id="btn-cancel-claim-booking" class="btn btn-sm btn-ghost" style="padding:4px 8px; font-size:0.75rem; color:var(--accent-primary); border:1px solid rgba(249, 115, 22, 0.2); background:transparent; cursor:pointer;">
+                      <button id="btn-cancel-claim-booking" class="btn btn-sm btn-ghost" style="padding:4px 8px; font-size:0.75rem; color:var(--accent-primary); border:1px solid rgba(204, 65, 37, 0.2); background:transparent; cursor:pointer;">
                         ← Kembali
                       </button>
                     </div>
@@ -1369,7 +1369,7 @@
                   alertBanner.innerHTML = `
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; width:100%;">
                       <span style="text-align:left;">👑 <strong>Klaim Sesi Member:</strong> Pilih tanggal climbing kamu pada kalender di bawah.</span>
-                      <button id="btn-cancel-claim-booking" class="btn btn-sm btn-ghost" style="padding:4px 8px; font-size:0.75rem; color:var(--accent-primary); border:1px solid rgba(249, 115, 22, 0.2); background:transparent; cursor:pointer;">
+                      <button id="btn-cancel-claim-booking" class="btn btn-sm btn-ghost" style="padding:4px 8px; font-size:0.75rem; color:var(--accent-primary); border:1px solid rgba(204, 65, 37, 0.2); background:transparent; cursor:pointer;">
                         ← Kembali
                       </button>
                     </div>
