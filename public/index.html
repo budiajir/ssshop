@@ -20,10 +20,16 @@
         <span class="logo-text">Ssshophaus <span class="logo-accent">Boulder</span></span>
       </a>
       <nav class="header-nav">
-        <a href="#" class="nav-link active">Book</a>
-        <a href="#" class="nav-link">About</a>
-        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="nav-link active" data-translate-key="nav-book">Book</a>
+        <a href="#" class="nav-link" data-translate-key="nav-about">About</a>
+        <a href="#" class="nav-link" data-translate-key="nav-contact">Contact</a>
       </nav>
+      <!-- Language Switcher -->
+      <div class="lang-switch" style="display: flex; align-items: center; gap: 4px; margin-left: auto; margin-right: 12px;">
+        <button class="btn-lang active" data-lang="id">ID</button>
+        <span style="color: var(--text-muted); font-size: 0.75rem;">/</span>
+        <button class="btn-lang" data-lang="en">EN</button>
+      </div>
       <!-- Hamburger Menu untuk Mobile -->
       <button class="hamburger-btn" id="hamburger-btn" aria-label="Buka Menu">
         <span class="hamburger-line"></span>
@@ -40,29 +46,29 @@
     <div class="stepper" id="stepper">
       <div class="step-item active" data-step="1">
         <div class="step-circle">1</div>
-        <span class="step-label">Pilih Jadwal</span>
+        <span class="step-label" data-translate-key="step-1-label">Pilih Jadwal</span>
       </div>
       <div class="step-connector"></div>
       <div class="step-item" data-step="2">
         <div class="step-circle">2</div>
-        <span class="step-label">Pilih Sesi</span>
+        <span class="step-label" data-translate-key="step-2-label">Pilih Sesi</span>
       </div>
       <div class="step-connector"></div>
       <div class="step-item" data-step="3">
         <div class="step-circle">3</div>
-        <span class="step-label">Data & Add-on</span>
+        <span class="step-label" data-translate-key="step-3-label">Data & Add-on</span>
       </div>
       <div class="step-connector"></div>
       <div class="step-item" data-step="4">
         <div class="step-circle">4</div>
-        <span class="step-label">Bayar</span>
+        <span class="step-label" data-translate-key="step-4-label">Bayar</span>
       </div>
     </div>
     <!-- ===== STEP 1 : BOOKING TYPE & CALENDAR ===== -->
     <section class="step-panel active" id="step-1">
       <div class="panel-header">
-        <h1>Mulai Petualangan Climbing Kamu</h1>
-        <p class="subtitle">Pilih tiket sekali datang atau paket multipass/membership yang lebih hemat.</p>
+        <h1 data-translate-key="step1-title">Mulai Petualangan Climbing Kamu</h1>
+        <p class="subtitle" data-translate-key="step1-subtitle">Pilih tiket sekali datang atau paket multipass/membership yang lebih hemat.</p>
       </div>
 
       <!-- Mode Selector Tabs -->
@@ -70,29 +76,29 @@
         <button class="mode-tab active" id="tab-single" data-mode="single">
           <span class="tab-emoji">🧗</span>
           <div class="tab-text">
-            <span class="tab-title">Sekali Datang</span>
-            <span class="tab-subtitle">Single Entry Pass</span>
+            <span class="tab-title" data-translate-key="tab-single-title">Sekali Datang</span>
+            <span class="tab-subtitle" data-translate-key="tab-single-subtitle">Single Entry Pass</span>
           </div>
         </button>
         <button class="mode-tab" id="tab-package" data-mode="package">
           <span class="tab-emoji">💎</span>
           <div class="tab-text">
-            <span class="tab-title">Paket Hemat / Member</span>
-            <span class="tab-subtitle">Multipass & Unlimited</span>
+            <span class="tab-title" data-translate-key="tab-package-title">Paket Hemat / Member</span>
+            <span class="tab-subtitle" data-translate-key="tab-package-subtitle">Multipass & Unlimited</span>
           </div>
         </button>
         <button class="mode-tab" id="tab-claim" data-mode="claim">
           <span class="tab-emoji">🎟️</span>
           <div class="tab-text">
-            <span class="tab-title">Gunakan Paket / Member</span>
-            <span class="tab-subtitle">Booking tanpa bayar lagi</span>
+            <span class="tab-title" data-translate-key="tab-claim-title">Gunakan Paket / Member</span>
+            <span class="tab-subtitle" data-translate-key="tab-claim-subtitle">Booking tanpa bayar lagi</span>
           </div>
         </button>
         <button class="mode-tab" id="tab-check-ticket" data-mode="check-ticket">
           <span class="tab-emoji">🔍</span>
           <div class="tab-text">
-            <span class="tab-title">Cari Tiket Saya</span>
-            <span class="tab-subtitle">Cek tiket & barcode kamu</span>
+            <span class="tab-title" data-translate-key="tab-check-title">Cari Tiket Saya</span>
+            <span class="tab-subtitle" data-translate-key="tab-check-subtitle">Cek tiket & barcode kamu</span>
           </div>
         </button>
       </div>
@@ -115,9 +121,9 @@
           </div>
 
           <div class="calendar-legend">
-            <div class="legend-item"><span class="legend-dot available"></span> Tersedia</div>
-            <div class="legend-item"><span class="legend-dot closed"></span> Tutup</div>
-            <div class="legend-item"><span class="legend-dot full"></span> Penuh</div>
+            <div class="legend-item"><span class="legend-dot available"></span> <span data-translate-key="legend-available">Tersedia</span></div>
+            <div class="legend-item"><span class="legend-dot closed"></span> <span data-translate-key="legend-closed">Tutup</span></div>
+            <div class="legend-item"><span class="legend-dot full"></span> <span data-translate-key="legend-full">Penuh</span></div>
           </div>
         </div>
       </div>
@@ -539,8 +545,8 @@
           <h3 class="payment-card-title">💳 Metode Pembayaran</h3>
 
           <div class="payment-options">
-            <label class="payment-option" for="pay-qris" id="pay-qris-label">
-              <input type="radio" name="payment" id="pay-qris" value="qris" checked>
+            <label class="payment-option" for="pay-qris" id="pay-qris-label" style="display: none;">
+              <input type="radio" name="payment" id="pay-qris" value="qris">
               <div class="payment-option-inner">
                 <div class="payment-radio-visual"></div>
                 <div class="payment-method-info">
@@ -551,7 +557,7 @@
               </div>
             </label>
 
-            <label class="payment-option" for="pay-gopay" id="pay-gopay-label">
+            <label class="payment-option" for="pay-gopay" id="pay-gopay-label" style="display: none;">
               <input type="radio" name="payment" id="pay-gopay" value="gopay">
               <div class="payment-option-inner">
                 <div class="payment-radio-visual"></div>
@@ -563,7 +569,7 @@
               </div>
             </label>
 
-            <label class="payment-option" for="pay-ovo" id="pay-ovo-label">
+            <label class="payment-option" for="pay-ovo" id="pay-ovo-label" style="display: none;">
               <input type="radio" name="payment" id="pay-ovo" value="ovo">
               <div class="payment-option-inner">
                 <div class="payment-radio-visual"></div>
@@ -576,12 +582,12 @@
             </label>
 
             <label class="payment-option" for="pay-bank" id="pay-bank-label">
-              <input type="radio" name="payment" id="pay-bank" value="bank">
+              <input type="radio" name="payment" id="pay-bank" value="bank" checked>
               <div class="payment-option-inner">
                 <div class="payment-radio-visual"></div>
                 <div class="payment-method-info">
-                  <span class="payment-method-name">Transfer Bank</span>
-                  <span class="payment-method-desc">BCA, BNI, Mandiri, BRI</span>
+                  <span class="payment-method-name" data-translate-key="pay-bank-title">Transfer Bank (BCA)</span>
+                  <span class="payment-method-desc" data-translate-key="pay-bank-desc">Transfer manual ke rekening BCA</span>
                 </div>
                 <span class="payment-method-icon">🏦</span>
               </div>

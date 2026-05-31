@@ -190,6 +190,27 @@ body::after {
   background: rgba(204, 65, 37, 0.08);
 }
 
+.btn-lang {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+.btn-lang:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+.btn-lang.active {
+  color: var(--accent-primary);
+  background: rgba(204, 65, 37, 0.1);
+}
+
 /* === STEPPER === */
 .stepper {
   max-width: 640px;

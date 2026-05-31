@@ -8,6 +8,7 @@
 
   // ── State ──────────────────────────────────
   const state = {
+    lang: 'id',
     currentStep: 1,
     calendarMonth: new Date().getMonth(),
     calendarYear: new Date().getFullYear(),
@@ -17,7 +18,7 @@
     userEmail: '',
     userWhatsApp: '',
     addons: { shoes: false, chalk: false },
-    paymentMethod: 'qris',
+    paymentMethod: 'bank',
 
     // Package flow states
     bookingMode: 'single',
@@ -39,6 +40,36 @@
 
   const DAYS_ID = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 
+  const MONTHS_EN = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  const DAYS_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  const TRANSLATIONS = {
+    id: {
+      'nav-book': 'Book',
+      'nav-about': 'About',
+      'nav-contact': 'Contact',
+      'pay-bank-title': 'Transfer Bank (BCA)',
+      'pay-bank-desc': 'Transfer manual ke rekening BCA',
+      'placeholder-name': 'Masukkan nama lengkap',
+      'placeholder-email': 'contoh@email.com',
+      'step2-subtitle': 'Sesi tersedia untuk tanggal'
+    },
+    en: {
+      'nav-book': 'Book',
+      'nav-about': 'About',
+      'nav-contact': 'Contact',
+      'pay-bank-title': 'Bank Transfer (BCA)',
+      'pay-bank-desc': 'Manual transfer to BCA account',
+      'placeholder-name': 'Enter full name',
+      'placeholder-email': 'example@email.com',
+      'step2-subtitle': 'Sessions available for'
+    }
+  };
+
   const PACKAGES = {
     'pass-wd-5': { id: 'pass-wd-5', name: '5x Weekday Pass', price: 329000, type: 'weekday', desc: '5x masuk di weekdays' },
     'pass-wd-10': { id: 'pass-wd-10', name: '10x Weekday Pass', price: 599000, type: 'weekday', desc: '10x masuk di weekdays' },
@@ -57,6 +88,9 @@
   }
 
   function formatDateID(date) {
+    if (state.lang === 'en') {
+      return `${DAYS_EN[date.getDay()]}, ${MONTHS_EN[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    }
     return `${DAYS_ID[date.getDay()]}, ${date.getDate()} ${MONTHS_ID[date.getMonth()]} ${date.getFullYear()}`;
   }
 
@@ -125,10 +159,14 @@
   async function renderCalendar() {
     const title = $('#cal-title');
     const grid = $('#cal-grid');
-    title.textContent = `${MONTHS_ID[state.calendarMonth]} ${state.calendarYear}`;
+    title.textContent = state.lang === 'en' 
+      ? `${MONTHS_EN[state.calendarMonth]} ${state.calendarYear}`
+      : `${MONTHS_ID[state.calendarMonth]} ${state.calendarYear}`;
 
     // Show loading state
-    grid.innerHTML = '<div class="cal-loading">Memuat kalender...</div>';
+    grid.innerHTML = state.lang === 'en'
+      ? '<div class="cal-loading">Loading calendar...</div>'
+      : '<div class="cal-loading">Memuat kalender...</div>';
 
     // Fetch real availability data from backend
     await fetchCalendarSlots();
@@ -141,7 +179,9 @@
     today.setHours(0, 0, 0, 0);
 
     // Day headers
-    const dayHeaders = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+    const dayHeaders = state.lang === 'en'
+      ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+      : ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
     let html = dayHeaders.map(d => `<div class="cal-day-header">${d}</div>`).join('');
 
     // Empty cells before first day
@@ -198,9 +238,12 @@
       }
       
       if (slotData && !slotData.isOpen && slotData.note) {
-        cellHtml = `<span style="font-size:0.95rem;font-weight:bold;display:block;line-height:1.1;">${d}</span><span style="font-size:0.55rem;display:block;color:var(--text-muted);font-weight:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;" title="${slotData.note}">Libur</span>`;
+        const labelLibur = state.lang === 'en' ? 'Closed' : 'Libur';
+        cellHtml = `<span style="font-size:0.95rem;font-weight:bold;display:block;line-height:1.1;">${d}</span><span style="font-size:0.55rem;display:block;color:var(--text-muted);font-weight:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;" title="${slotData.note}">${labelLibur}</span>`;
       } else if (slotData && slotData.isOpen && !isOpenDay(dow)) {
-        cellHtml = `<span style="font-size:0.95rem;font-weight:bold;display:block;line-height:1.1;">${d}</span><span style="font-size:0.55rem;display:block;color:var(--accent-primary);font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;" title="${slotData.note || 'Buka khusus!'}">Buka!</span>`;
+        const labelBuka = state.lang === 'en' ? 'Open!' : 'Buka!';
+        const defaultNote = state.lang === 'en' ? 'Special Open!' : 'Buka khusus!';
+        cellHtml = `<span style="font-size:0.95rem;font-weight:bold;display:block;line-height:1.1;">${d}</span><span style="font-size:0.55rem;display:block;color:var(--accent-primary);font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;" title="${slotData.note || defaultNote}">${labelBuka}</span>`;
       }
 
       html += `<div class="${classes.join(' ')}" ${titleAttr} ${clickable ? `data-date="${dateStr}" data-day="${d}"` : ''} ${clickable ? 'role="button" tabindex="0"' : ''}>${cellHtml}</div>`;
@@ -523,9 +566,20 @@
         </div>
       `;
     } else if (method === 'bank') {
+      const isEn = state.lang === 'en';
+      const titleText = isEn ? 'Bank Transfer Account' : 'Rekening Transfer Bank';
+      const numLabel = isEn ? 'Account Number:' : 'Nomor Rekening:';
+      const ownerLabel = 'a/n Muhammad Harfin N';
+      const copyBtnLabel = isEn ? 'Copy' : 'Salin';
+      const instructions = isEn 
+        ? `Please transfer the total booking amount to the BCA account above.<br>
+           <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; display: inline-block;">After transfer, click <strong>Pay Now</strong> to generate ticket. The transfer receipt can be uploaded via WhatsApp confirmation.</span>`
+        : `Silakan transfer ke rekening BCA di atas sebesar nominal total pembayaran.<br>
+           <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; display: inline-block;">Setelah transfer, klik <strong>Bayar Sekarang</strong> untuk membuat tiket. Bukti transfer diunggah via WhatsApp konfirmasi.</span>`;
+
       container.innerHTML = `
         <div class="payment-details-title">
-          <span>🏦</span> Rekening Transfer Bank
+          <span>🏦</span> ${titleText}
         </div>
         <div class="bank-accounts-list">
           <!-- BCA -->
@@ -533,29 +587,16 @@
             <div class="bank-info-left">
               <div class="bank-logo-badge bca">BCA</div>
               <div>
-                <span class="bank-num-label">Nomor Rekening:</span>
-                <span class="bank-number" id="bca-num">1234567890</span>
-                <div class="bank-owner">a/n Ssshophaus Boulder / Budi Aji</div>
+                <span class="bank-num-label">${numLabel}</span>
+                <span class="bank-number" id="bca-num">2332674600</span>
+                <div class="bank-owner">${ownerLabel}</div>
               </div>
             </div>
-            <button class="btn-copy-num" data-copy-target="bca-num">Salin</button>
-          </div>
-          <!-- Mandiri -->
-          <div class="bank-account-card">
-            <div class="bank-info-left">
-              <div class="bank-logo-badge mandiri">MANDIRI</div>
-              <div>
-                <span class="bank-num-label">Nomor Rekening:</span>
-                <span class="bank-number" id="mandiri-num">0987654321</span>
-                <div class="bank-owner">a/n Ssshophaus Boulder / Budi Aji</div>
-              </div>
-            </div>
-            <button class="btn-copy-num" data-copy-target="mandiri-num">Salin</button>
+            <button class="btn-copy-num" data-copy-target="bca-num">${copyBtnLabel}</button>
           </div>
         </div>
         <div class="bank-instructions" style="margin-top: 12px;">
-          Silakan transfer ke salah satu rekening di atas sebesar nominal total pembayaran.<br>
-          <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; display: inline-block;">Setelah transfer, klik <strong>Bayar Sekarang</strong> untuk membuat tiket. Bukti transfer diunggah via WhatsApp konfirmasi.</span>
+          ${instructions}
         </div>
       `;
       
@@ -566,10 +607,12 @@
           const targetId = btn.dataset.copyTarget;
           const text = document.getElementById(targetId).textContent;
           navigator.clipboard.writeText(text).then(() => {
-            btn.textContent = 'Disalin!';
+            const successText = state.lang === 'en' ? 'Copied!' : 'Disalin!';
+            const revertText = state.lang === 'en' ? 'Copy' : 'Salin';
+            btn.textContent = successText;
             btn.classList.add('copied');
             setTimeout(() => {
-              btn.textContent = 'Salin';
+              btn.textContent = revertText;
               btn.classList.remove('copied');
             }, 2000);
           });
@@ -577,6 +620,57 @@
       });
     } else {
       container.style.display = 'none';
+    }
+  }
+
+  // Helper aliases for language updates
+  function updateSummaryBar() {
+    updateSummary();
+  }
+  function updateReviewDetails() {
+    renderPaymentReview();
+  }
+
+  function updateLanguage(lang) {
+    state.lang = lang;
+    localStorage.setItem('ss_lang', lang);
+    
+    $$('.btn-lang').forEach(btn => {
+      if (btn.dataset.lang === lang) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    const dict = TRANSLATIONS[lang];
+    if (!dict) return;
+
+    $$('[data-translate-key]').forEach(el => {
+      const key = el.dataset.translateKey;
+      if (dict[key]) {
+        if (dict[key].includes('<')) {
+          el.innerHTML = dict[key];
+        } else {
+          el.textContent = dict[key];
+        }
+      }
+    });
+
+    const nameInput = $('#input-name');
+    if (nameInput && dict['placeholder-name']) nameInput.placeholder = dict['placeholder-name'];
+    const emailInput = $('#input-email');
+    if (emailInput && dict['placeholder-email']) emailInput.placeholder = dict['placeholder-email'];
+
+    renderCalendar();
+    if (state.selectedDate) {
+      const formatted = formatDateID(state.selectedDate);
+      const sessionDateLabel = $('#session-date-label');
+      if (sessionDateLabel) {
+        sessionDateLabel.innerHTML = `${dict['step2-subtitle']} <strong>${formatted}</strong>`;
+      }
+      updateSummaryBar();
+      updateReviewDetails();
     }
   }
 
@@ -962,7 +1056,16 @@
   // ── Initialization ─────────────────────────
   function init() {
     setupNavigation();
-    renderCalendar();
+    
+    // Bind click events to language buttons
+    $$('.btn-lang').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        updateLanguage(e.target.dataset.lang);
+      });
+    });
+
+    const savedLang = localStorage.getItem('ss_lang') || 'id';
+    updateLanguage(savedLang);
 
     const tabSingle = $('#tab-single');
     const tabPackage = $('#tab-package');
