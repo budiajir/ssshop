@@ -175,6 +175,72 @@
       }
     }
 
+    /* === STATS CARDS === */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-card {
+      background: rgba(28, 21, 18, 0.6);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(204, 65, 37, 0.15);
+      border-radius: 16px;
+      padding: 20px 24px;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      border-color: rgba(204, 65, 37, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .stat-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .stat-card.revenue .stat-value {
+      color: var(--accent-primary);
+    }
+
+    .stat-card.members .stat-value {
+      color: var(--success);
+    }
+
+    .stat-card.visits .stat-value {
+      color: var(--warning);
+    }
+
     /* Calendar Overrides styling */
     .cal-day.override-closed {
       border: 1px solid rgba(239, 68, 68, 0.3) !important;
@@ -470,6 +536,25 @@
         </button>
       </div>
     </header>
+
+    <!-- Stats Summary Cards -->
+    <div class="stats-grid" id="stats-grid">
+      <div class="stat-card revenue">
+        <div class="stat-label">💰 Omzet Bulan Ini</div>
+        <div class="stat-value" id="stat-revenue">Rp ...</div>
+        <div class="stat-sub" id="stat-revenue-sub">Memuat data...</div>
+      </div>
+      <div class="stat-card members">
+        <div class="stat-label">💎 Member Aktif</div>
+        <div class="stat-value" id="stat-members">...</div>
+        <div class="stat-sub" id="stat-members-sub">Paket & membership</div>
+      </div>
+      <div class="stat-card visits">
+        <div class="stat-label">🧗 Kunjungan Bulan Ini</div>
+        <div class="stat-value" id="stat-visits">...</div>
+        <div class="stat-sub" id="stat-visits-sub">Total booking sesi</div>
+      </div>
+    </div>
 
     <div class="admin-grid">
       

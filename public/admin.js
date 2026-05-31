@@ -182,6 +182,9 @@
     // Fetch active schedule overrides
     await fetchOverrides();
 
+    // Fetch stats
+    await fetchStats();
+
     // Render calendar
     renderCalendar();
 
@@ -312,6 +315,36 @@
       }
     } catch (err) {
       showToast('Gagal mereset tanggal.', true);
+    }
+  }
+
+  // ── Stats Dashboard ───────────────────────────
+  async function fetchStats() {
+    try {
+      const data = await api('/api/admin/stats');
+      if (data && data.success) {
+        const s = data.stats;
+        
+        // Format currency
+        const formatRp = (n) => 'Rp ' + n.toLocaleString('id-ID');
+        
+        $('#stat-revenue').textContent = formatRp(s.monthlyRevenue);
+        $('#stat-revenue-sub').textContent = `Tiket: ${formatRp(s.bookingRevenue)} | Paket: ${formatRp(s.packageRevenue)}`;
+        
+        $('#stat-members').textContent = `${s.activeMembers} Orang`;
+        $('#stat-members-sub').textContent = `${s.totalPackageSales} paket terjual bulan ini`;
+        
+        $('#stat-visits').textContent = `${s.totalVisits} Sesi`;
+        $('#stat-visits-sub').textContent = `Periode: ${s.period}`;
+      }
+    } catch (err) {
+      console.error('Failed to fetch stats:', err);
+      const statRevenue = $('#stat-revenue');
+      if (statRevenue) statRevenue.textContent = 'Rp 0';
+      const statMembers = $('#stat-members');
+      if (statMembers) statMembers.textContent = '0 Orang';
+      const statVisits = $('#stat-visits');
+      if (statVisits) statVisits.textContent = '0 Sesi';
     }
   }
 
