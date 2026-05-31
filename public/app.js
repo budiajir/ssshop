@@ -514,7 +514,7 @@
         </div>
         <div class="qris-display">
           <div class="qris-img-wrapper">
-            <img src="qris.png" alt="QRIS Code SS Climbing">
+            <img src="qris.png" alt="QRIS Code Ssshophaus Boulder">
           </div>
           <div class="qris-instructions">
             <strong>Scan QRIS di atas</strong> menggunakan aplikasi Mobile Banking atau e-Wallet favorit kamu (GoPay, OVO, Dana, LinkAja, BCA, dll).<br>
@@ -535,7 +535,7 @@
               <div>
                 <span class="bank-num-label">Nomor Rekening:</span>
                 <span class="bank-number" id="bca-num">1234567890</span>
-                <div class="bank-owner">a/n SS Climbing / Budi Aji</div>
+                <div class="bank-owner">a/n Ssshophaus Boulder / Budi Aji</div>
               </div>
             </div>
             <button class="btn-copy-num" data-copy-target="bca-num">Salin</button>
@@ -547,7 +547,7 @@
               <div>
                 <span class="bank-num-label">Nomor Rekening:</span>
                 <span class="bank-number" id="mandiri-num">0987654321</span>
-                <div class="bank-owner">a/n SS Climbing / Budi Aji</div>
+                <div class="bank-owner">a/n Ssshophaus Boulder / Budi Aji</div>
               </div>
             </div>
             <button class="btn-copy-num" data-copy-target="mandiri-num">Salin</button>
@@ -1496,8 +1496,8 @@
     $('#btn-share').addEventListener('click', () => {
       if (navigator.share) {
         navigator.share({
-          title: 'SS Climbing Booking',
-          text: `Aku sudah booking sesi climbing di SS Climbing! 🧗`,
+          title: 'Ssshophaus Boulder Booking',
+          text: `Aku sudah booking sesi climbing di Ssshophaus Boulder! 🧗`,
           url: window.location.href,
         });
       } else {
