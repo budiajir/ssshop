@@ -49,24 +49,184 @@
 
   const TRANSLATIONS = {
     id: {
-      'nav-book': 'Book',
-      'nav-about': 'About',
-      'nav-contact': 'Contact',
+      // Navigation
+      'nav-book': 'Booking',
+      'nav-about': 'Tentang Kami',
+      'nav-contact': 'Kontak',
+
+      // Stepper
+      'step-1-label': 'Pilih Jadwal',
+      'step-2-label': 'Pilih Sesi',
+      'step-3-label': 'Data & Add-on',
+      'step-4-label': 'Bayar',
+
+      // Step 1 Header
+      'step1-title': 'Mulai Petualangan Climbing Kamu',
+      'step1-subtitle': 'Pilih tiket sekali datang atau paket multipass/membership yang lebih hemat.',
+
+      // Step 1 Tabs
+      'tab-single-title': 'Sekali Datang',
+      'tab-single-subtitle': 'Single Entry Pass',
+      'tab-package-title': 'Paket Hemat / Member',
+      'tab-package-subtitle': 'Multipass & Unlimited',
+      'tab-claim-title': 'Gunakan Paket / Member',
+      'tab-claim-subtitle': 'Booking tanpa bayar lagi',
+      'tab-check-title': 'Cari Tiket Saya',
+      'tab-check-subtitle': 'Cek tiket & barcode kamu',
+
+      // Step 1 Legend
+      'legend-available': 'Tersedia',
+      'legend-closed': 'Tutup',
+      'legend-full': 'Penuh',
+
+      // Step 2 Header
+      'step2-title': 'Pilih Sesi',
+      'step2-subtitle': 'Sesi tersedia untuk tanggal',
+      'safety-title': 'Wall Size Limit:',
+      'safety-text': 'Kuota dibatasi maksimal 5-6 orang per sesi demi keamanan, keselamatan, dan kenyamanan Anda memanjat.',
+
+      // Step 3 Header & Form
+      'step3-title': 'Data Diri & Tambahan',
+      'step3-subtitle': 'Isi data singkat kamu dan pilih perlengkapan tambahan jika perlu.',
+      'form-card-user': 'Informasi Pemesan',
+      'label-name': 'Nama Lengkap',
+      'placeholder-name': 'Masukkan nama lengkap',
+      'label-email': 'Email',
+      'placeholder-email': 'contoh@email.com',
+      'label-whatsapp': 'Nomor WhatsApp',
+      'form-card-gear': 'Sewa Alat',
+      'optional-badge': 'Opsional',
+      'addon-desc': 'Belum punya alat sendiri? Sewa aja, praktis!',
+      'addon-shoes-name': '🥾 Sepatu Climbing',
+      'addon-shoes-detail': 'Tersedia ukuran 36 – 45',
+      'addon-chalk-name': 'Chalk Bag',
+      'addon-chalk-detail': 'Chalk bag + chalk ball',
+
+      // Step 4 Header & Summary
+      'step4-title': 'Pembayaran',
+      'step4-subtitle': 'Periksa detail booking dan lakukan pembayaran.',
+      'summary-title': '📋 Ringkasan Booking',
+      'summary-name': 'Nama',
+      'summary-email': 'Email',
+      'summary-whatsapp': 'WhatsApp',
+      'summary-date': 'Tanggal',
+      'summary-session': 'Sesi',
+      'summary-ticket': 'Tiket Masuk',
+      'summary-shoes': 'Sewa Sepatu',
+      'summary-chalk': 'Sewa Chalk Bag',
+      'summary-total': 'Total Pembayaran',
+      'pay-card-title': 'Metode Pembayaran',
       'pay-bank-title': 'Transfer Bank (BCA)',
       'pay-bank-desc': 'Transfer manual ke rekening BCA',
-      'placeholder-name': 'Masukkan nama lengkap',
-      'placeholder-email': 'contoh@email.com',
-      'step2-subtitle': 'Sesi tersedia untuk tanggal'
+      'btn-pay': 'Bayar Sekarang',
+
+      // Success
+      'success-title': 'Booking Berhasil! 🎉',
+      'success-subtitle': 'Terima kasih! Detail booking sudah dikirim ke email dan WhatsApp kamu.',
+      'btn-show-barcode': 'Tampilkan Barcode Tiket',
+      'btn-share': 'Bagikan Info',
+      'btn-new': 'Buat Booking Baru',
+
+      // Search Ticket Tab Content
+      'search-title': 'Cari Tiket & Booking Aktif',
+      'search-subtitle': 'Masukkan nomor WhatsApp Anda untuk melihat daftar tiket aktif yang sudah dibooking.',
+      'search-btn': 'Cari Tiket',
+
+      // General Buttons
+      'btn-next-session': 'Lanjut ke Pilih Sesi',
+      'btn-next-form': 'Lanjut ke Formulir',
+      'btn-next-pay': 'Lanjut Bayar',
+      'btn-back': 'Kembali',
     },
     en: {
-      'nav-book': 'Book',
-      'nav-about': 'About',
-      'nav-contact': 'Contact',
+      // Navigation
+      'nav-book': 'Booking',
+      'nav-about': 'About Us',
+      'nav-contact': 'Contact Us',
+
+      // Stepper
+      'step-1-label': 'Schedule',
+      'step-2-label': 'Session',
+      'step-3-label': 'Details',
+      'step-4-label': 'Pay',
+
+      // Step 1 Header
+      'step1-title': 'Start Your Climbing Adventure',
+      'step1-subtitle': 'Choose a single entry pass or save more with multipass/membership packages.',
+
+      // Step 1 Tabs
+      'tab-single-title': 'Single Entry',
+      'tab-single-subtitle': 'Single Entry Pass',
+      'tab-package-title': 'Save More / Members',
+      'tab-package-subtitle': 'Multipass & Unlimited',
+      'tab-claim-title': 'Use Package / Member',
+      'tab-claim-subtitle': 'Book without paying again',
+      'tab-check-title': 'Search My Ticket',
+      'tab-check-subtitle': 'Check your tickets & barcode',
+
+      // Step 1 Legend
+      'legend-available': 'Available',
+      'legend-closed': 'Closed',
+      'legend-full': 'Full',
+
+      // Step 2 Header
+      'step2-title': 'Select Session',
+      'step2-subtitle': 'Sessions available for',
+      'safety-title': 'Wall Size Limit:',
+      'safety-text': 'Slots are limited to a max of 5-6 climbers per session for safety, security, and your comfort.',
+
+      // Step 3 Header & Form
+      'step3-title': 'Details & Add-ons',
+      'step3-subtitle': 'Fill in your details and select rental equipment if needed.',
+      'form-card-user': 'Contact Details',
+      'label-name': 'Full Name',
+      'placeholder-name': 'Enter your full name',
+      'label-email': 'Email Address',
+      'placeholder-email': 'example@email.com',
+      'label-whatsapp': 'WhatsApp Number',
+      'form-card-gear': 'Equipment Rentals',
+      'optional-badge': 'Optional',
+      'addon-desc': 'No gear yet? Rent here for convenience!',
+      'addon-shoes-name': '🥾 Climbing Shoes',
+      'addon-shoes-detail': 'Sizes 36 – 45 available',
+      'addon-chalk-name': 'Chalk Bag',
+      'addon-chalk-detail': 'Chalk bag + chalk ball included',
+
+      // Step 4 Header & Summary
+      'step4-title': 'Payment',
+      'step4-subtitle': 'Review your booking details and make payment.',
+      'summary-title': '📋 Booking Summary',
+      'summary-name': 'Name',
+      'summary-email': 'Email',
+      'summary-whatsapp': 'WhatsApp',
+      'summary-date': 'Date',
+      'summary-session': 'Session',
+      'summary-ticket': 'Entry Ticket',
+      'summary-shoes': 'Shoe Rental',
+      'summary-chalk': 'Chalk Rental',
+      'summary-total': 'Total Payment',
+      'pay-card-title': 'Payment Methods',
       'pay-bank-title': 'Bank Transfer (BCA)',
       'pay-bank-desc': 'Manual transfer to BCA account',
-      'placeholder-name': 'Enter full name',
-      'placeholder-email': 'example@email.com',
-      'step2-subtitle': 'Sessions available for'
+      'btn-pay': 'Pay Now',
+
+      // Success
+      'success-title': 'Booking Successful! 🎉',
+      'success-subtitle': 'Thank you! Your booking details have been sent to your email and WhatsApp.',
+      'btn-show-barcode': 'Show Ticket Barcode',
+      'btn-share': 'Share Info',
+      'btn-new': 'Create New Booking',
+
+      // Search Ticket Tab Content
+      'search-title': 'Search Tickets & Active Bookings',
+      'search-subtitle': 'Enter your WhatsApp number to view your active climbing tickets.',
+      'search-btn': 'Search Tickets',
+
+      // General Buttons
+      'btn-next-session': 'Proceed to Select Session',
+      'btn-next-form': 'Proceed to Form',
+      'btn-next-pay': 'Proceed to Pay',
+      'btn-back': 'Back',
     }
   };
 

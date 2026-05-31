@@ -301,11 +301,12 @@
       <!-- Wrapper 4: Check Active Bookings/Tickets using WhatsApp -->
       <div class="mode-content-wrapper hidden" id="check-ticket-wrapper">
         <div class="form-card" style="max-width: 500px; margin: 0 auto; margin-bottom: var(--space-xl);">
-          <h3 class="form-card-title">
-            <span class="form-icon">🔍</span>
-            Cari Tiket / Booking Sesi Kamu
+          <h3 class="form-card-title" data-translate-key="search-title">
+            Cari Tiket & Booking Aktif
           </h3>
-          <p class="addon-desc" style="margin-bottom: var(--space-md);">Masukkan nomor WhatsApp Anda untuk mencari tiket aktif dan menampilkan barcode masuk.</p>
+          <p class="addon-desc" style="margin-bottom: var(--space-md);" data-translate-key="search-subtitle">
+            Masukkan nomor WhatsApp Anda untuk melihat daftar tiket aktif yang sudah dibooking.
+          </p>
           
           <div class="form-group" style="margin-bottom: var(--space-md);">
             <label for="check-ticket-whatsapp">Nomor WhatsApp Terdaftar</label>
@@ -316,7 +317,7 @@
           </div>
           
           <button class="btn btn-primary" id="btn-search-ticket" style="width: 100%;">
-            Cari Tiket Saya
+            <span data-translate-key="search-btn">Cari Tiket</span>
           </button>
           
           <!-- Loading Indicator -->
@@ -362,14 +363,14 @@
     <!-- ===== STEP 2 : SESSION ===== -->
     <section class="step-panel" id="step-2">
       <div class="panel-header">
-        <h1>Pilih Sesi</h1>
+        <h1 data-translate-key="step2-title">Pilih Sesi</h1>
         <p class="subtitle" id="session-date-label">Sesi tersedia untuk tanggal yang dipilih</p>
         
         <!-- Safety Limitation Banner -->
         <div class="safety-banner">
           <span class="safety-icon">⚠️</span>
           <div class="safety-text">
-            <strong>Wall Size Limit:</strong> Kuota dibatasi maksimal <strong>5-6 orang per sesi</strong> demi keamanan, keselamatan, dan kenyamanan Anda memanjat.
+            <strong data-translate-key="safety-title">Wall Size Limit:</strong> <span data-translate-key="safety-text">Kuota dibatasi maksimal 5-6 orang per sesi demi keamanan, keselamatan, dan kenyamanan Anda memanjat.</span>
           </div>
         </div>
       </div>
@@ -381,7 +382,7 @@
       <div class="step-actions">
         <button class="btn btn-ghost" id="back-to-calendar">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Kembali
+          <span data-translate-key="btn-back">Kembali</span>
         </button>
       </div>
     </section>
@@ -389,27 +390,24 @@
     <!-- ===== STEP 3 : FORM + ADD-ONS ===== -->
     <section class="step-panel" id="step-3">
       <div class="panel-header">
-        <h1>Data Diri & Tambahan</h1>
-        <p class="subtitle">Isi data singkat kamu dan pilih perlengkapan tambahan jika perlu.</p>
+        <h1 data-translate-key="step3-title">Data Diri & Tambahan</h1>
+        <p class="subtitle" data-translate-key="step3-subtitle">Isi data singkat kamu dan pilih perlengkapan tambahan jika perlu.</p>
       </div>
 
       <div class="form-layout">
         <!-- User Form -->
         <div class="form-card">
-          <h3 class="form-card-title">
-            <span class="form-icon">👤</span>
-            Informasi Pemesan
-          </h3>
+          <h3 class="form-card-title"><span class="form-icon">👤</span> <span data-translate-key="form-card-user">Informasi Pemesan</span></h3>
           <div class="form-group">
-            <label for="input-name">Nama Lengkap</label>
+            <label for="input-name" data-translate-key="label-name">Nama Lengkap</label>
             <input type="text" id="input-name" placeholder="Masukkan nama lengkap" autocomplete="name" required>
           </div>
           <div class="form-group">
-            <label for="input-email">Email</label>
+            <label for="input-email" data-translate-key="label-email">Email</label>
             <input type="email" id="input-email" placeholder="contoh@email.com" autocomplete="email" required>
           </div>
           <div class="form-group">
-            <label for="input-whatsapp">Nomor WhatsApp</label>
+            <label for="input-whatsapp" data-translate-key="label-whatsapp">Nomor WhatsApp</label>
             <div class="phone-input-wrapper">
               <span class="phone-prefix">+62</span>
               <input type="tel" id="input-whatsapp" placeholder="812xxxxxxxx" autocomplete="tel">
@@ -421,9 +419,9 @@
         <div class="form-card">
           <h3 class="form-card-title">
             <span class="form-icon">🎒</span>
-            Sewa Alat <span class="optional-badge">Opsional</span>
+            <span data-translate-key="form-card-gear">Sewa Alat</span> <span class="optional-badge" data-translate-key="optional-badge">Opsional</span>
           </h3>
-          <p class="addon-desc">Belum punya alat sendiri? Sewa aja, praktis!</p>
+          <p class="addon-desc" data-translate-key="addon-desc">Belum punya alat sendiri? Sewa aja, praktis!</p>
 
           <label class="addon-item" for="addon-shoes" id="addon-shoes-label">
             <div class="addon-left">
@@ -432,8 +430,8 @@
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7L6 10L11 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div class="addon-info">
-                <span class="addon-name">🥾 Sepatu Climbing</span>
-                <span class="addon-detail">Tersedia ukuran 36 – 45</span>
+                <span class="addon-name" data-translate-key="addon-shoes-name">🥾 Sepatu Climbing</span>
+                <span class="addon-detail" data-translate-key="addon-shoes-detail">Tersedia ukuran 36 – 45</span>
               </div>
             </div>
             <span class="addon-price">+Rp 25.000</span>
@@ -446,8 +444,8 @@
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7L6 10L11 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div class="addon-info">
-                <span class="addon-name">🧗 Chalk Bag</span>
-                <span class="addon-detail">Chalk bag + chalk ball</span>
+                <span class="addon-name" data-translate-key="addon-chalk-name">🧗 Chalk Bag</span>
+                <span class="addon-detail" data-translate-key="addon-chalk-detail">Chalk bag + chalk ball</span>
               </div>
             </div>
             <span class="addon-price">+Rp 15.000</span>
@@ -468,7 +466,7 @@
           </div>
         </div>
         <button class="btn btn-primary" id="btn-to-payment">
-          Lanjut Bayar
+          <span data-translate-key="btn-next-pay">Lanjut Bayar</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
@@ -476,7 +474,7 @@
       <div class="step-actions">
         <button class="btn btn-ghost" id="back-to-sessions">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Kembali
+          <span data-translate-key="btn-back">Kembali</span>
         </button>
       </div>
     </section>
@@ -484,65 +482,65 @@
     <!-- ===== STEP 4 : PAYMENT ===== -->
     <section class="step-panel" id="step-4">
       <div class="panel-header">
-        <h1>Pembayaran</h1>
-        <p class="subtitle">Periksa detail booking dan lakukan pembayaran.</p>
+        <h1 data-translate-key="step4-title">Pembayaran</h1>
+        <p class="subtitle" data-translate-key="step4-subtitle">Periksa detail booking dan lakukan pembayaran.</p>
       </div>
 
       <div class="payment-layout">
         <!-- Order Review -->
         <div class="payment-card order-review">
-          <h3 class="payment-card-title">📋 Ringkasan Booking</h3>
+          <h3 class="payment-card-title"><span data-translate-key="summary-title">📋 Ringkasan Booking</span></h3>
 
           <div class="review-row">
-            <span class="review-label">Nama</span>
+            <span class="review-label" data-translate-key="summary-name">Nama</span>
             <span class="review-value" id="review-name">—</span>
           </div>
           <div class="review-row">
-            <span class="review-label">Email</span>
+            <span class="review-label" data-translate-key="summary-email">Email</span>
             <span class="review-value" id="review-email">—</span>
           </div>
           <div class="review-row">
-            <span class="review-label">WhatsApp</span>
+            <span class="review-label" data-translate-key="summary-whatsapp">WhatsApp</span>
             <span class="review-value" id="review-wa">—</span>
           </div>
 
           <div class="review-divider"></div>
 
           <div class="review-row">
-            <span class="review-label">Tanggal</span>
+            <span class="review-label" data-translate-key="summary-date">Tanggal</span>
             <span class="review-value" id="review-date">—</span>
           </div>
           <div class="review-row">
-            <span class="review-label">Sesi</span>
+            <span class="review-label" data-translate-key="summary-session">Sesi</span>
             <span class="review-value" id="review-session">—</span>
           </div>
 
           <div class="review-divider"></div>
 
           <div class="review-row">
-            <span class="review-label" id="review-ticket-price-label">Tiket Masuk</span>
+            <span class="review-label" id="review-ticket-price-label" data-translate-key="summary-ticket">Tiket Masuk</span>
             <span class="review-value" id="review-ticket-price">—</span>
           </div>
           <div class="review-row addon-review-row" id="review-shoes-row" style="display:none;">
-            <span class="review-label">Sewa Sepatu</span>
+            <span class="review-label" data-translate-key="summary-shoes">Sewa Sepatu</span>
             <span class="review-value">Rp 25.000</span>
           </div>
           <div class="review-row addon-review-row" id="review-chalk-row" style="display:none;">
-            <span class="review-label">Sewa Chalk Bag</span>
+            <span class="review-label" data-translate-key="summary-chalk">Sewa Chalk Bag</span>
             <span class="review-value">Rp 15.000</span>
           </div>
 
           <div class="review-divider thick"></div>
 
           <div class="review-row total-row">
-            <span class="review-label">Total Pembayaran</span>
+            <span class="review-label" data-translate-key="summary-total">Total Pembayaran</span>
             <span class="review-value total-value" id="review-total">—</span>
           </div>
         </div>
 
         <!-- Payment Methods -->
         <div class="payment-card payment-methods">
-          <h3 class="payment-card-title">💳 Metode Pembayaran</h3>
+          <h3 class="payment-card-title"><span data-translate-key="pay-card-title">💳 Metode Pembayaran</span></h3>
 
           <div class="payment-options">
             <label class="payment-option" for="pay-qris" id="pay-qris-label" style="display: none;">
@@ -600,7 +598,7 @@
           </div>
 
           <button class="btn btn-primary btn-pay" id="btn-pay">
-            <span class="btn-pay-text">Bayar Sekarang</span>
+            <span class="btn-pay-text" data-translate-key="btn-pay">Bayar Sekarang</span>
             <span class="btn-pay-amount" id="btn-pay-amount">Rp 0</span>
           </button>
         </div>
@@ -609,7 +607,7 @@
       <div class="step-actions">
         <button class="btn btn-ghost" id="back-to-form">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Kembali
+          <span data-translate-key="btn-back">Kembali</span>
         </button>
       </div>
     </section>
@@ -630,32 +628,32 @@
           </div>
         </div>
 
-        <h1 class="success-title">Booking Berhasil! 🎉</h1>
-        <p class="success-subtitle">Terima kasih! Detail booking sudah dikirim ke email dan WhatsApp kamu.</p>
+        <h1 class="success-title" data-translate-key="success-title">Booking Berhasil! 🎉</h1>
+        <p class="success-subtitle" data-translate-key="success-subtitle">Terima kasih! Detail booking sudah dikirim ke email dan WhatsApp kamu.</p>
 
         <div class="success-ticket">
           <div class="ticket-header">
-            <span class="ticket-brand">Ssshophaus Boulder</span>
+            <span class="ticket-brand" data-translate-key="success-ticket-brand">Ssshophaus Boulder</span>
             <span class="ticket-id" id="ticket-id">SS-000000</span>
           </div>
           <div class="ticket-body">
             <div class="ticket-row">
               <div class="ticket-field">
-                <span class="ticket-label">Nama</span>
+                <span class="ticket-label" data-translate-key="summary-name">Nama</span>
                 <span class="ticket-value" id="ticket-name">—</span>
               </div>
               <div class="ticket-field">
-                <span class="ticket-label" id="ticket-date-label">Tanggal</span>
+                <span class="ticket-label" id="ticket-date-label" data-translate-key="summary-date">Tanggal</span>
                 <span class="ticket-value" id="ticket-date">—</span>
               </div>
             </div>
             <div class="ticket-row">
               <div class="ticket-field">
-                <span class="ticket-label" id="ticket-session-label">Sesi</span>
+                <span class="ticket-label" id="ticket-session-label" data-translate-key="summary-session">Sesi</span>
                 <span class="ticket-value" id="ticket-session">—</span>
               </div>
               <div class="ticket-field">
-                <span class="ticket-label">Total</span>
+                <span class="ticket-label" data-translate-key="summary-total">Total</span>
                 <span class="ticket-value ticket-total" id="ticket-total">—</span>
               </div>
             </div>
@@ -671,14 +669,14 @@
         <div class="success-actions-stacked">
           <button class="btn btn-primary btn-wa-send" id="btn-send-wa-receipt">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-            Kirim Bukti & Konfirmasi via WA
+            <span data-translate-key="btn-show-barcode">Tampilkan Barcode Tiket</span>
           </button>
           
           <div class="success-actions">
-            <button class="btn btn-ghost" id="btn-new-booking">Booking Lagi</button>
+            <button class="btn btn-ghost" id="btn-new-booking"><span data-translate-key="btn-new">Buat Booking Baru</span></button>
             <button class="btn btn-ghost" id="btn-share">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8V12.667C4 13.0203 4.14048 13.3594 4.39052 13.6095C4.64057 13.8595 4.97971 14 5.33333 14H10.6667C11.0203 14 11.3594 13.8595 11.6095 13.6095C11.8595 13.3594 12 13.0203 12 12.667V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.33333 4.66667L8 3.33333L6.66667 4.66667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3.33333V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Bagikan Tiket
+              <span data-translate-key="btn-share">Bagikan Info</span>
             </button>
           </div>
         </div>
