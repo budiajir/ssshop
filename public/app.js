@@ -750,7 +750,7 @@
           </div>
         `;
       }
-      if (payTitle) payTitle.textContent = '💳 Validasi Keanggotaan';
+      if (payTitle) payTitle.textContent = 'Validasi Keanggotaan';
       if (btnPayText) btnPayText.textContent = 'Konfirmasi Booking Sesi';
     } else {
       // Restore standard payment display
@@ -758,7 +758,7 @@
       const payTitle = document.querySelector('.payment-card.payment-methods .payment-card-title');
       const btnPayText = document.querySelector('#btn-pay .btn-pay-text');
       if (payOptions) payOptions.style.display = 'flex';
-      if (payTitle) payTitle.textContent = '💳 Metode Pembayaran';
+      if (payTitle) payTitle.textContent = 'Metode Pembayaran';
       if (btnPayText) btnPayText.textContent = 'Bayar Sekarang';
 
       if (state.bookingMode === 'package' && state.selectedPackage) {
