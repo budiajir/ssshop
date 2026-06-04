@@ -242,7 +242,7 @@
       // Step 4 Header & Summary
       'step4-title': 'Payment',
       'step4-subtitle': 'Review your booking details and make payment.',
-      'summary-title': '📋 Booking Summary',
+      'summary-title': 'Booking Summary',
       'summary-name': 'Name',
       'summary-email': 'Email',
       'summary-whatsapp': 'WhatsApp',
@@ -811,7 +811,7 @@
         </div>
         <div class="qris-display">
           <div class="qris-img-wrapper">
-            
+            <img src="qris.png" alt="QRIS Code Ssshophaus Boulder">
           </div>
           <div class="qris-instructions">
             <strong>Scan QRIS di atas</strong> menggunakan aplikasi Mobile Banking atau e-Wallet favorit kamu (GoPay, OVO, Dana, LinkAja, BCA, dll).<br>
