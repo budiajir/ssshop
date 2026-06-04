@@ -105,7 +105,7 @@
       // Step 4 Header & Summary
       'step4-title': 'Pembayaran',
       'step4-subtitle': 'Periksa detail booking dan lakukan pembayaran.',
-      'summary-title': '📋 Ringkasan Booking',
+      'summary-title': 'Ringkasan Booking',
       'summary-name': 'Nama',
       'summary-email': 'Email',
       'summary-whatsapp': 'WhatsApp',
