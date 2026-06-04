@@ -811,7 +811,7 @@
         </div>
         <div class="qris-display">
           <div class="qris-img-wrapper">
-            <img src="qris.png" alt="QRIS Code Ssshophaus Boulder">
+            
           </div>
           <div class="qris-instructions">
             <strong>Scan QRIS di atas</strong> menggunakan aplikasi Mobile Banking atau e-Wallet favorit kamu (GoPay, OVO, Dana, LinkAja, BCA, dll).<br>
